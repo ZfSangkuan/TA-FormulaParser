@@ -1,0 +1,12 @@
+# sys
+.DS_Store
+
+# tmp file
+*.props
+
+# data set
+data/*
+.db
+
+# exec
+*.out
