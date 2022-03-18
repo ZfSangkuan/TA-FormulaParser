@@ -3,6 +3,7 @@
 
 # tmp file
 *.props
+tmp.*
 
 # data set
 data/*
