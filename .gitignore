@@ -1,9 +1,13 @@
 # sys
 .DS_Store
 
+# env
+.vscode/*
+
 # tmp file
 *.props
 tmp.*
+tmp
 
 # data set
 data/*
@@ -11,3 +15,6 @@ data/*
 
 # exec
 *.out
+
+# docu
+doc/*
