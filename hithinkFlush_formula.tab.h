@@ -35,8 +35,8 @@
    especially those whose name start with YY_ or yy_.  They are
    private implementation details that can be changed or removed.  */
 
-#ifndef YY_YY_Y_TAB_H_INCLUDED
-# define YY_YY_Y_TAB_H_INCLUDED
+#ifndef YY_YY_HITHINKFLUSH_FORMULA_TAB_H_INCLUDED
+# define YY_YY_HITHINKFLUSH_FORMULA_TAB_H_INCLUDED
 /* Debug traces.  */
 #ifndef YYDEBUG
 # define YYDEBUG 1
@@ -67,33 +67,18 @@ extern int yydebug;
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif
-/* Token kinds.  */
-#define YYEMPTY -2
-#define YYEOF 0
-#define YYerror 256
-#define YYUNDEF 257
-#define COLOR 258
-#define STICKLINE 259
-#define ID 260
-#define NUMBER 261
-#define FLOAT_NUM 262
-#define ASSIGN 263
-#define AND 264
-#define OR 265
-#define LE 266
-#define GE 267
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 85 "hithinkFlush_formula.y"
+  char* COLOR;                             /* COLOR  */
+  char* STICKLINE;                         /* STICKLINE  */
+  char* ID;                                /* ID  */
+  double FLOAT_NUM;                        /* FLOAT_NUM  */
+  int NUMBER;                              /* NUMBER  */
 
-    int ival;
-    double dval;
-    char* sval;
-
-#line 97 "y.tab.h"
+#line 82 "hithinkFlush_formula.tab.h"
 
 };
 typedef union YYSTYPE YYSTYPE;
@@ -108,4 +93,4 @@ extern YYSTYPE yylval;
 int yyparse (void);
 
 
-#endif /* !YY_YY_Y_TAB_H_INCLUDED  */
+#endif /* !YY_YY_HITHINKFLUSH_FORMULA_TAB_H_INCLUDED  */

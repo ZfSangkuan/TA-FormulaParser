@@ -1,6 +1,15 @@
 %{
-    #include "stdio.h"
+    #include <stdio.h>
+    #include <stdlib.h>
+    #include <string.h>
     #include "y.tab.h"
+
+    char* dup4val(char* yytext) {
+        int len = strlen(yytext);
+        char* yylval = (char*) malloc(++len * sizeof(char));
+        strcpy(yylval, yytext);
+        return yylval;
+    }
 %}
 
 alpha [a-zA-Z]
@@ -8,25 +17,25 @@ digit [0-9]
 
 %%
 
-[-]?{digit}+                { printf("number\n"); return NUMBER; }
-[-]?{digit}+\.{digit}{1,6}  { printf("float_number\n"); return FLOAT_NUM; }
+[-]?{digit}+                { printf("flex:%s\n", yytext); yylval.sval = dup4val(yytext); return NUMBER; }
+[-]?{digit}+\.{digit}+      { printf("flex:%s\n", yytext); yylval.sval = dup4val(yytext); return FLOAT_NUM; }
 
-(color|COLOR)({alpha}|{digit})*     { printf("flex:color\n"); return COLOR; }
-nodraw|NODRAW                       { printf("flex:color\n"); return COLOR; }
-LINETHICK({alpha}|{digit})*         { printf("flex:color\n"); return COLOR; }
-STICKLINE                           { printf("stickline\n"); return STICKLINE; }
+(color|COLOR)({alpha}|{digit})*     { printf("flex:%s\n", yytext); yylval.sval = dup4val(yytext); return COLOR; }
+nodraw|NODRAW                       { printf("flex:%s\n", yytext); yylval.sval = dup4val(yytext); return COLOR; }
+LINETHICK({alpha}|{digit})*         { printf("flex:%s\n", yytext); yylval.sval = dup4val(yytext); return COLOR; }
+STICKLINE                           { printf("flex:%s\n", yytext); yylval.sval = dup4val(yytext); return STICKLINE; }
 
-"AND"                   { printf("and\n"); return AND; }
-"OR"                    { printf("or\n"); return OR; }
+"AND"                   { printf("and\n"); yylval.sval = dup4val(yytext); return AND; }
+"OR"                    { printf("or\n"); yylval.sval = dup4val(yytext); return OR; }
 
-{alpha}({alpha}|{digit})*   { printf("flex:id\n"); return ID; }
+{alpha}({alpha}|{digit})*   { printf("flex:%s\n", yytext); yylval.sval = dup4val(yytext); return ID; }
 
-"<="                        { printf("le\n"); return LE; }
-">="                        { printf("ge\n"); return GE; }
-":="                    { printf("flex:assign\n"); return ASSIGN; }
+"<="                        { printf("le\n"); yylval.sval = dup4val(yytext); return LE; }
+">="                        { printf("ge\n"); yylval.sval = dup4val(yytext); return GE; }
+":="                    { printf("assign\n"); yylval.sval = dup4val(yytext); return ASSIGN; }
 
 [ \t]                   { ; }
-.	                        { printf("flex:%c\n", *yytext); return *yytext; }
+.	                        { printf("lex:%c\n", *yytext); yylval.sval = dup4val(yytext); return *yytext; }
 
 %%
 

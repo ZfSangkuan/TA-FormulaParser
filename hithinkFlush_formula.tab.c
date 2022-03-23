@@ -71,8 +71,6 @@
 
     #include "lex.yy.c"
     #include <stdio.h>
-    #include <stdlib.h>
-    #include <string.h>
     
     void yyerror(const char *s) {
         fprintf( stderr, "%s\n", s );
@@ -80,75 +78,8 @@
 
     #define YYDEBUG 1
 
-    char py_repr[1024];
 
-    char* strmrg1(char* s1) {
-        int len = strlen(s1);
-        char* ss = (char*) malloc(++len * sizeof(char));
-        strcpy(ss, s1);
-
-        return ss;
-    }
-
-    char* strmrg2(char* s1, char* s2) {
-        int len = strlen(s1) + strlen(s2);
-        char* ss = (char*) malloc(++len * sizeof(char));
-        strcpy(ss, s1);
-        strcat(ss, s2);
-
-        free(s1); 
-
-        return ss;
-    }
-
-    char* strmrg3(char* s1, char* s2, char* s3, int free_bit) {
-        int len = strlen(s1) + strlen(s2) + strlen(s3);
-        char* ss = (char*) malloc(++len * sizeof(char));
-        strcpy(ss, s1);
-        strcat(ss, s2);
-        strcat(ss, s3);
-
-        if(free_bit == 1) {
-            free(s1); free(s3);
-        }else if(free_bit == 0) {
-            free(s2);
-        }else if(free_bit == 2) {
-            free(s1); free(s2);
-        }else if(free_bit == 3) {
-            free(s3);
-        }
-        
-        return ss;
-    }
-
-    char* strmrg4(char* s0, char* s1, char* s2, char* s3) {
-        int len = strlen(s0) + strlen(s1) + strlen(s2) + strlen(s3);
-        char* ss = (char*) malloc(++len * sizeof(char));
-        strcpy(ss, s0);
-        strcat(ss, s1);
-        strcat(ss, s2);
-        strcat(ss, s3);
-        // free(s0); 
-        free(s2);
-
-        return ss;
-    }
-
-    char* strmrg5(char* s0, char* s1, char* s2, char* s3, char* s4) {
-        int len = strlen(s0) + strlen(s1) + strlen(s2) + strlen(s3) + strlen(s4);
-        char* ss = (char*) malloc(++len * sizeof(char));
-        strcpy(ss, s0);
-        strcat(ss, s1);
-        strcat(ss, s2);
-        strcat(ss, s3);
-        strcat(ss, s4);
-        free(s1); free(s3);
-
-        return ss;
-    }
-
-
-#line 152 "y.tab.c"
+#line 83 "hithinkFlush_formula.tab.c"
 
 # ifndef YY_CAST
 #  ifdef __cplusplus
@@ -171,82 +102,7 @@
 #  endif
 # endif
 
-/* Use api.header.include to #include this header
-   instead of duplicating it here.  */
-#ifndef YY_YY_Y_TAB_H_INCLUDED
-# define YY_YY_Y_TAB_H_INCLUDED
-/* Debug traces.  */
-#ifndef YYDEBUG
-# define YYDEBUG 1
-#endif
-#if YYDEBUG
-extern int yydebug;
-#endif
-
-/* Token kinds.  */
-#ifndef YYTOKENTYPE
-# define YYTOKENTYPE
-  enum yytokentype
-  {
-    YYEMPTY = -2,
-    YYEOF = 0,                     /* "end of file"  */
-    YYerror = 256,                 /* error  */
-    YYUNDEF = 257,                 /* "invalid token"  */
-    COLOR = 258,                   /* COLOR  */
-    STICKLINE = 259,               /* STICKLINE  */
-    ID = 260,                      /* ID  */
-    NUMBER = 261,                  /* NUMBER  */
-    FLOAT_NUM = 262,               /* FLOAT_NUM  */
-    ASSIGN = 263,                  /* ASSIGN  */
-    AND = 264,                     /* AND  */
-    OR = 265,                      /* OR  */
-    LE = 266,                      /* LE  */
-    GE = 267                       /* GE  */
-  };
-  typedef enum yytokentype yytoken_kind_t;
-#endif
-/* Token kinds.  */
-#define YYEMPTY -2
-#define YYEOF 0
-#define YYerror 256
-#define YYUNDEF 257
-#define COLOR 258
-#define STICKLINE 259
-#define ID 260
-#define NUMBER 261
-#define FLOAT_NUM 262
-#define ASSIGN 263
-#define AND 264
-#define OR 265
-#define LE 266
-#define GE 267
-
-/* Value type.  */
-#if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-union YYSTYPE
-{
-#line 85 "hithinkFlush_formula.y"
-
-    int ival;
-    double dval;
-    char* sval;
-
-#line 235 "y.tab.c"
-
-};
-typedef union YYSTYPE YYSTYPE;
-# define YYSTYPE_IS_TRIVIAL 1
-# define YYSTYPE_IS_DECLARED 1
-#endif
-
-
-extern YYSTYPE yylval;
-
-
-int yyparse (void);
-
-
-#endif /* !YY_YY_Y_TAB_H_INCLUDED  */
+#include "hithinkFlush_formula.tab.h"
 /* Symbol kind.  */
 enum yysymbol_kind_t
 {
@@ -613,7 +469,7 @@ union yyalloc
 /* YYFINAL -- State number of the termination state.  */
 #define YYFINAL  2
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   74
+#define YYLAST   85
 
 /* YYNTOKENS -- Number of terminals.  */
 #define YYNTOKENS  24
@@ -670,12 +526,12 @@ static const yytype_int8 yytranslate[] =
 
 #if YYDEBUG
 /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
-static const yytype_uint8 yyrline[] =
+static const yytype_int8 yyrline[] =
 {
-       0,   107,   107,   108,   115,   120,   121,   124,   127,   128,
-     131,   138,   143,   146,   149,   152,   155,   158,   161,   164,
-     167,   170,   173,   176,   179,   180,   181,   182,   185,   190,
-     191
+       0,    30,    30,    31,    34,    36,    37,    40,    43,    44,
+      47,    52,    55,    56,    57,    58,    59,    60,    61,    62,
+      63,    64,    65,    66,    67,    68,    69,    70,    73,    76,
+      77
 };
 #endif
 
@@ -719,12 +575,12 @@ yysymbol_name (yysymbol_kind_t yysymbol)
    STATE-NUM.  */
 static const yytype_int8 yypact[] =
 {
-     -21,     2,   -21,   -18,    32,   -21,   -21,   -21,   -21,     5,
-       5,   -12,    50,   -21,   -21,     5,    34,   -21,   -20,    34,
-     -21,    70,   -21,     5,    19,     5,     5,     5,     5,     5,
-       5,     5,     5,     5,     5,     5,     5,   -21,   -21,    18,
-     -21,    43,    43,    52,    52,    52,    52,    52,    -5,    -5,
-     -21,   -21,    34,   -21
+     -21,     2,   -21,   -18,     5,   -21,   -21,   -21,   -21,     3,
+       3,    18,   -11,   -21,   -21,     3,    17,   -21,    48,   -21,
+      34,   -21,     3,    33,     3,     3,     3,     3,     3,     3,
+       3,     3,     3,     3,     3,   -21,   -21,    48,   -20,   -21,
+      57,    57,    66,    66,    66,    66,    66,    35,    35,   -21,
+     -21,     3,   -21,    48
 };
 
 /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
@@ -733,25 +589,25 @@ static const yytype_int8 yypact[] =
 static const yytype_int8 yydefact[] =
 {
        2,     0,     1,     0,     0,     3,     5,     8,     9,     0,
-       0,     0,    25,    26,    27,     0,    29,    24,     0,    10,
-       4,     0,     6,     0,     0,     0,     0,     0,     0,     0,
-       0,     0,     0,     0,     0,     0,     0,    11,     7,     0,
-      12,    22,    23,    17,    18,    19,    20,    21,    14,    13,
-      15,    16,    30,    28
+       0,     0,    25,    26,    27,     0,     0,    24,    10,     4,
+       0,     6,     0,     0,     0,     0,     0,     0,     0,     0,
+       0,     0,     0,     0,     0,    11,     7,    29,     0,    12,
+      22,    23,    17,    18,    19,    20,    21,    14,    13,    15,
+      16,     0,    28,    30
 };
 
 /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
 {
      -21,   -21,   -21,   -21,   -21,   -21,   -21,   -21,   -10,   -21,
-      51
+     -21
 };
 
 /* YYDEFGOTO[NTERM-NUM].  */
 static const yytype_int8 yydefgoto[] =
 {
-       0,     1,     5,    11,    22,     6,     7,     8,    16,    17,
-      18
+       0,     1,     5,    11,    21,     6,     7,     8,    16,    17,
+      38
 };
 
 /* YYTABLE[YYPACT[STATE-NUM]] -- What to do in state STATE-NUM.  If
@@ -759,26 +615,28 @@ static const yytype_int8 yydefgoto[] =
    number is the opposite.  If YYTABLE_NINF, syntax error.  */
 static const yytype_int8 yytable[] =
 {
-      19,    36,     2,    37,     9,    24,     3,     4,    20,    21,
-      12,    13,    14,    34,    35,    41,    42,    43,    44,    45,
-      46,    47,    48,    49,    50,    51,    52,    15,    25,    26,
-      27,    28,    29,    30,    31,    32,    33,    34,    35,    36,
-      10,    53,    40,    25,    26,    27,    28,    29,    30,    31,
-      32,    33,    34,    35,    27,    28,    29,    30,    31,    32,
-      33,    34,    35,    -1,    -1,    -1,    -1,    -1,    32,    33,
-      34,    35,    23,    38,    39
+      18,    51,     2,    52,     9,    23,     3,     4,    12,    13,
+      14,    22,    37,    10,    40,    41,    42,    43,    44,    45,
+      46,    47,    48,    49,    50,    15,    24,    25,    26,    27,
+      28,    29,    30,    31,    32,    33,    34,    36,    19,    20,
+      35,    53,    24,    25,    26,    27,    28,    29,    30,    31,
+      32,    33,    34,    33,    34,     0,    39,    24,    25,    26,
+      27,    28,    29,    30,    31,    32,    33,    34,    26,    27,
+      28,    29,    30,    31,    32,    33,    34,    -1,    -1,    -1,
+      -1,    -1,    31,    32,    33,    34
 };
 
 static const yytype_int8 yycheck[] =
 {
-      10,    21,     0,    23,    22,    15,     4,     5,    20,    21,
-       5,     6,     7,    18,    19,    25,    26,    27,    28,    29,
-      30,    31,    32,    33,    34,    35,    36,    22,     9,    10,
-      11,    12,    13,    14,    15,    16,    17,    18,    19,    21,
-       8,    23,    23,     9,    10,    11,    12,    13,    14,    15,
-      16,    17,    18,    19,    11,    12,    13,    14,    15,    16,
-      17,    18,    19,    11,    12,    13,    14,    15,    16,    17,
-      18,    19,    22,     3,    23
+      10,    21,     0,    23,    22,    15,     4,     5,     5,     6,
+       7,    22,    22,     8,    24,    25,    26,    27,    28,    29,
+      30,    31,    32,    33,    34,    22,     9,    10,    11,    12,
+      13,    14,    15,    16,    17,    18,    19,     3,    20,    21,
+      23,    51,     9,    10,    11,    12,    13,    14,    15,    16,
+      17,    18,    19,    18,    19,    -1,    23,     9,    10,    11,
+      12,    13,    14,    15,    16,    17,    18,    19,    11,    12,
+      13,    14,    15,    16,    17,    18,    19,    11,    12,    13,
+      14,    15,    16,    17,    18,    19
 };
 
 /* YYSTOS[STATE-NUM] -- The symbol kind of the accessing symbol of
@@ -786,11 +644,11 @@ static const yytype_int8 yycheck[] =
 static const yytype_int8 yystos[] =
 {
        0,    25,     0,     4,     5,    26,    29,    30,    31,    22,
-       8,    27,     5,     6,     7,    22,    32,    33,    34,    32,
-      20,    21,    28,    22,    32,     9,    10,    11,    12,    13,
-      14,    15,    16,    17,    18,    19,    21,    23,     3,    34,
-      23,    32,    32,    32,    32,    32,    32,    32,    32,    32,
-      32,    32,    32,    23
+       8,    27,     5,     6,     7,    22,    32,    33,    32,    20,
+      21,    28,    22,    32,     9,    10,    11,    12,    13,    14,
+      15,    16,    17,    18,    19,    23,     3,    32,    34,    23,
+      32,    32,    32,    32,    32,    32,    32,    32,    32,    32,
+      32,    21,    23,    32
 };
 
 /* YYR1[RULE-NUM] -- Symbol kind of the left-hand side of rule RULE-NUM.  */
@@ -889,89 +747,7 @@ yy_symbol_value_print (FILE *yyo,
   if (!yyvaluep)
     return;
   YY_IGNORE_MAYBE_UNINITIALIZED_BEGIN
-  switch (yykind)
-    {
-    case YYSYMBOL_COLOR: /* COLOR  */
-#line 96 "hithinkFlush_formula.y"
-         { fprintf (yyo, "\"%s\"", ((*yyvaluep).sval)); }
-#line 898 "y.tab.c"
-        break;
-
-    case YYSYMBOL_STICKLINE: /* STICKLINE  */
-#line 96 "hithinkFlush_formula.y"
-         { fprintf (yyo, "\"%s\"", ((*yyvaluep).sval)); }
-#line 904 "y.tab.c"
-        break;
-
-    case YYSYMBOL_ID: /* ID  */
-#line 96 "hithinkFlush_formula.y"
-         { fprintf (yyo, "\"%s\"", ((*yyvaluep).sval)); }
-#line 910 "y.tab.c"
-        break;
-
-    case YYSYMBOL_NUMBER: /* NUMBER  */
-#line 96 "hithinkFlush_formula.y"
-         { fprintf (yyo, "\"%s\"", ((*yyvaluep).sval)); }
-#line 916 "y.tab.c"
-        break;
-
-    case YYSYMBOL_FLOAT_NUM: /* FLOAT_NUM  */
-#line 96 "hithinkFlush_formula.y"
-         { fprintf (yyo, "\"%s\"", ((*yyvaluep).sval)); }
-#line 922 "y.tab.c"
-        break;
-
-    case YYSYMBOL_lines: /* lines  */
-#line 96 "hithinkFlush_formula.y"
-         { fprintf (yyo, "\"%s\"", ((*yyvaluep).sval)); }
-#line 928 "y.tab.c"
-        break;
-
-    case YYSYMBOL_line: /* line  */
-#line 96 "hithinkFlush_formula.y"
-         { fprintf (yyo, "\"%s\"", ((*yyvaluep).sval)); }
-#line 934 "y.tab.c"
-        break;
-
-    case YYSYMBOL_line_body: /* line_body  */
-#line 96 "hithinkFlush_formula.y"
-         { fprintf (yyo, "\"%s\"", ((*yyvaluep).sval)); }
-#line 940 "y.tab.c"
-        break;
-
-    case YYSYMBOL_statement: /* statement  */
-#line 96 "hithinkFlush_formula.y"
-         { fprintf (yyo, "\"%s\"", ((*yyvaluep).sval)); }
-#line 946 "y.tab.c"
-        break;
-
-    case YYSYMBOL_plotment: /* plotment  */
-#line 96 "hithinkFlush_formula.y"
-         { fprintf (yyo, "\"%s\"", ((*yyvaluep).sval)); }
-#line 952 "y.tab.c"
-        break;
-
-    case YYSYMBOL_expr: /* expr  */
-#line 96 "hithinkFlush_formula.y"
-         { fprintf (yyo, "\"%s\"", ((*yyvaluep).sval)); }
-#line 958 "y.tab.c"
-        break;
-
-    case YYSYMBOL_func: /* func  */
-#line 96 "hithinkFlush_formula.y"
-         { fprintf (yyo, "\"%s\"", ((*yyvaluep).sval)); }
-#line 964 "y.tab.c"
-        break;
-
-    case YYSYMBOL_params: /* params  */
-#line 96 "hithinkFlush_formula.y"
-         { fprintf (yyo, "\"%s\"", ((*yyvaluep).sval)); }
-#line 970 "y.tab.c"
-        break;
-
-      default:
-        break;
-    }
+  YY_USE (yykind);
   YY_IGNORE_MAYBE_UNINITIALIZED_END
 }
 
@@ -1353,200 +1129,8 @@ yyreduce:
   YY_REDUCE_PRINT (yyn);
   switch (yyn)
     {
-  case 2: /* lines: %empty  */
-#line 107 "hithinkFlush_formula.y"
-                                { (yyval.sval) = strmrg1(""); }
-#line 1360 "y.tab.c"
-    break;
 
-  case 3: /* lines: lines line  */
-#line 108 "hithinkFlush_formula.y"
-                                {
-                                    (yyval.sval) = strmrg2((yyvsp[-1].sval), (yyvsp[0].sval));
-                                    strcpy(py_repr, (yyval.sval));
-                                    printf("\nPY_REPR:\n%s\n\n", py_repr);
-                                }
-#line 1370 "y.tab.c"
-    break;
-
-  case 4: /* line: line_body line_tail ';'  */
-#line 115 "hithinkFlush_formula.y"
-                                        {
-                                            (yyval.sval) = strmrg2((yyvsp[-2].sval), "\n");  
-                                        }
-#line 1378 "y.tab.c"
-    break;
-
-  case 8: /* line_body: statement  */
-#line 127 "hithinkFlush_formula.y"
-                                { (yyval.sval) = strmrg1((yyvsp[0].sval)); }
-#line 1384 "y.tab.c"
-    break;
-
-  case 9: /* line_body: plotment  */
-#line 128 "hithinkFlush_formula.y"
-                                { (yyval.sval) = strmrg1((yyvsp[0].sval)); }
-#line 1390 "y.tab.c"
-    break;
-
-  case 10: /* statement: ID ASSIGN expr  */
-#line 131 "hithinkFlush_formula.y"
-                                {
-                                    (yyval.sval) = strmrg3((yyvsp[-2].sval), "=", (yyvsp[0].sval), 3);
-                                }
-#line 1398 "y.tab.c"
-    break;
-
-  case 11: /* plotment: STICKLINE '(' params ')'  */
-#line 138 "hithinkFlush_formula.y"
-                                       {
-                                    (yyval.sval) = strmrg3("STICKLINE(", (yyvsp[-1].sval), ")", 0);
-                                }
-#line 1406 "y.tab.c"
-    break;
-
-  case 12: /* expr: '(' expr ')'  */
-#line 143 "hithinkFlush_formula.y"
-                                {
-                                    (yyval.sval) = strmrg3("(", (yyvsp[-1].sval), ")", 0);
-                                }
-#line 1414 "y.tab.c"
-    break;
-
-  case 13: /* expr: expr '+' expr  */
-#line 146 "hithinkFlush_formula.y"
-                                {
-                                    (yyval.sval) = strmrg3((yyvsp[-2].sval), "+", (yyvsp[0].sval), 1);
-                                }
-#line 1422 "y.tab.c"
-    break;
-
-  case 14: /* expr: expr '-' expr  */
-#line 149 "hithinkFlush_formula.y"
-                                {
-                                    (yyval.sval) = strmrg3((yyvsp[-2].sval), "-", (yyvsp[0].sval), 1);
-                                }
-#line 1430 "y.tab.c"
-    break;
-
-  case 15: /* expr: expr '*' expr  */
-#line 152 "hithinkFlush_formula.y"
-                                {
-                                    (yyval.sval) = strmrg3((yyvsp[-2].sval), "*", (yyvsp[0].sval), 1);
-                                }
-#line 1438 "y.tab.c"
-    break;
-
-  case 16: /* expr: expr '/' expr  */
-#line 155 "hithinkFlush_formula.y"
-                                {
-                                    (yyval.sval) = strmrg3((yyvsp[-2].sval), "/", (yyvsp[0].sval), 1);
-                                }
-#line 1446 "y.tab.c"
-    break;
-
-  case 17: /* expr: expr '>' expr  */
-#line 158 "hithinkFlush_formula.y"
-                                {
-                                    (yyval.sval) = strmrg3((yyvsp[-2].sval), ">", (yyvsp[0].sval), 1);
-                                }
-#line 1454 "y.tab.c"
-    break;
-
-  case 18: /* expr: expr '<' expr  */
-#line 161 "hithinkFlush_formula.y"
-                                {
-                                    (yyval.sval) = strmrg3((yyvsp[-2].sval), "<", (yyvsp[0].sval), 1);
-                                }
-#line 1462 "y.tab.c"
-    break;
-
-  case 19: /* expr: expr '=' expr  */
-#line 164 "hithinkFlush_formula.y"
-                                {
-                                    (yyval.sval) = strmrg3((yyvsp[-2].sval), "==", (yyvsp[0].sval), 1);
-                                }
-#line 1470 "y.tab.c"
-    break;
-
-  case 20: /* expr: expr LE expr  */
-#line 167 "hithinkFlush_formula.y"
-                                {
-                                    (yyval.sval) = strmrg3((yyvsp[-2].sval), "<=", (yyvsp[0].sval), 1);
-                                }
-#line 1478 "y.tab.c"
-    break;
-
-  case 21: /* expr: expr GE expr  */
-#line 170 "hithinkFlush_formula.y"
-                                {
-                                    (yyval.sval) = strmrg3((yyvsp[-2].sval), ">=", (yyvsp[0].sval), 1);
-                                }
-#line 1486 "y.tab.c"
-    break;
-
-  case 22: /* expr: expr AND expr  */
-#line 173 "hithinkFlush_formula.y"
-                                {
-                                    (yyval.sval) = strmrg5("bt.And(", (yyvsp[-2].sval), ",", (yyvsp[0].sval), ")");
-                                }
-#line 1494 "y.tab.c"
-    break;
-
-  case 23: /* expr: expr OR expr  */
-#line 176 "hithinkFlush_formula.y"
-                                {
-                                    (yyval.sval) = strmrg5("bt.Or(", (yyvsp[-2].sval), ",", (yyvsp[0].sval), ")");
-                                }
-#line 1502 "y.tab.c"
-    break;
-
-  case 24: /* expr: func  */
-#line 179 "hithinkFlush_formula.y"
-                                {   (yyval.sval) = strmrg1((yyvsp[0].sval)); }
-#line 1508 "y.tab.c"
-    break;
-
-  case 25: /* expr: ID  */
-#line 180 "hithinkFlush_formula.y"
-                                {   (yyval.sval) = strmrg1((yyvsp[0].sval)); }
-#line 1514 "y.tab.c"
-    break;
-
-  case 26: /* expr: NUMBER  */
-#line 181 "hithinkFlush_formula.y"
-                                {   (yyval.sval) = strmrg1((yyvsp[0].sval)); }
-#line 1520 "y.tab.c"
-    break;
-
-  case 27: /* expr: FLOAT_NUM  */
-#line 182 "hithinkFlush_formula.y"
-                                {   (yyval.sval) = strmrg1((yyvsp[0].sval)); }
-#line 1526 "y.tab.c"
-    break;
-
-  case 28: /* func: ID '(' params ')'  */
-#line 185 "hithinkFlush_formula.y"
-                                {
-                                    (yyval.sval) = strmrg4((yyvsp[-3].sval), "(", (yyvsp[-1].sval), ")");
-                                }
-#line 1534 "y.tab.c"
-    break;
-
-  case 29: /* params: expr  */
-#line 190 "hithinkFlush_formula.y"
-                                { (yyval.sval) = strmrg1((yyvsp[0].sval)); }
-#line 1540 "y.tab.c"
-    break;
-
-  case 30: /* params: params ',' expr  */
-#line 191 "hithinkFlush_formula.y"
-                                { (yyval.sval) = strmrg3((yyvsp[-2].sval), ",", (yyvsp[0].sval), 1); }
-#line 1546 "y.tab.c"
-    break;
-
-
-#line 1550 "y.tab.c"
+#line 1134 "hithinkFlush_formula.tab.c"
 
       default: break;
     }
@@ -1739,7 +1323,7 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 194 "hithinkFlush_formula.y"
+#line 80 "hithinkFlush_formula.y"
 
 
 int main() {
