@@ -78,7 +78,7 @@ class TestStrategy(bt.Strategy):
         FH2=bt.And(MACD>=0,COUNT(MACD>REF(MACD,1),1)==1)
         FH3=bt.And(bt.And(FH1,FH2),EMA(C,13)>REF(EMA(C,13),1))
         FH4=bt.And(bt.And(FH1,FH2),ABS((DIF-DEA)/C)<0.018)
-        FH5=bt.And(bt.And(FH1,FH2),MACD<0.10)
+        FH5汉=bt.And(bt.And(FH1,FH2),MACD<0.10)
 
         # bt.LinePlotterIndicator(FH1, name='fh1')
 

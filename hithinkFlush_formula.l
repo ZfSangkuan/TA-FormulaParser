@@ -14,6 +14,7 @@
 
 alpha [a-zA-Z]
 digit [0-9]
+han [\xE4-\xE9][\xB8-\xBF][\x80-\xBF]
 
 %%
 
@@ -28,7 +29,7 @@ STICKLINE                           { printf("flex:%s\n", yytext); yylval.sval =
 "AND"                   { printf("and\n"); yylval.sval = dup4val(yytext); return AND; }
 "OR"                    { printf("or\n"); yylval.sval = dup4val(yytext); return OR; }
 
-{alpha}({alpha}|{digit})*   { printf("flex:%s\n", yytext); yylval.sval = dup4val(yytext); return ID; }
+({han}|{alpha})({han}|{alpha}|{digit})*   { printf("flex:%s\n", yytext); yylval.sval = dup4val(yytext); return ID; }
 
 "<="                        { printf("le\n"); yylval.sval = dup4val(yytext); return LE; }
 ">="                        { printf("ge\n"); yylval.sval = dup4val(yytext); return GE; }

@@ -72,11 +72,11 @@ extern int yydebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-  char* COLOR;                             /* COLOR  */
-  char* STICKLINE;                         /* STICKLINE  */
-  char* ID;                                /* ID  */
-  double FLOAT_NUM;                        /* FLOAT_NUM  */
-  int NUMBER;                              /* NUMBER  */
+#line 90 "hithinkFlush_formula.y"
+
+    int ival;
+    double dval;
+    char* sval;
 
 #line 82 "hithinkFlush_formula.tab.h"
 

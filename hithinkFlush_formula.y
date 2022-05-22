@@ -12,6 +12,11 @@
 
     char py_repr[1024];
 
+    char* strmrg(char*[] s, int[] free_bits) {
+        char* ss = (char*) malloc(1 * sizeof(char));
+        return ss;
+    }
+
     char* strmrg1(char* s1) {
         int len = strlen(s1);
         char* ss = (char*) malloc(++len * sizeof(char));
