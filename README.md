@@ -19,12 +19,21 @@ TA-FormulaParser, the executable ```./a.out```
 
 ## Quickstart
 
+0. Requirements
+
+Python 2.7 / 3.2 / 3.3 / 3.4 / 3.5 / 3.7  
+&nbsp; &nbsp; &nbsp; &nbsp;backtrader >= 1.9  
+&nbsp; &nbsp; &nbsp; &nbsp;matplotlib >= 1.4.1  
+&nbsp; &nbsp; &nbsp; &nbsp;requests >= 2.25  
+Flex 2.5.35 Apple(flex-32)  
+Bison (GNU Bison) 3.8.2  
+
 1. Compile
 
 ```shell
->yacc hithinkFlush_formula.y -d -t -v
->lex hithinkFlush_formula.l
->cc y.tab.c -DYYDEBUG=1
+>bison hithinkFlush_formula.y -d -t -v
+>flex hithinkFlush_formula.l
+>cc hithinkFlush_formula.tab.c -DYYDEBUG=1
 >echo "DIF:=(EMA(C,12)-EMA(C,26)),COLORF0F0F0;" | ./a.out
 ```  
 

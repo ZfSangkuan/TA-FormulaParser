@@ -60,10 +60,11 @@ extern int yydebug;
     NUMBER = 261,                  /* NUMBER  */
     FLOAT_NUM = 262,               /* FLOAT_NUM  */
     ASSIGN = 263,                  /* ASSIGN  */
-    AND = 264,                     /* AND  */
-    OR = 265,                      /* OR  */
-    LE = 266,                      /* LE  */
-    GE = 267                       /* GE  */
+    ASSIGNPLOT = 264,              /* ASSIGNPLOT  */
+    AND = 265,                     /* AND  */
+    OR = 266,                      /* OR  */
+    LE = 267,                      /* LE  */
+    GE = 268                       /* GE  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif
@@ -72,13 +73,13 @@ extern int yydebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 90 "hithinkFlush_formula.y"
+#line 106 "hithinkFlush_formula.y"
 
     int ival;
     double dval;
     char* sval;
 
-#line 82 "hithinkFlush_formula.tab.h"
+#line 83 "hithinkFlush_formula.tab.h"
 
 };
 typedef union YYSTYPE YYSTYPE;

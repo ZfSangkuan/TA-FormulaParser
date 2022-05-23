@@ -2,7 +2,7 @@
     #include <stdio.h>
     #include <stdlib.h>
     #include <string.h>
-    #include "y.tab.h"
+    #include "hithinkFlush_formula.tab.h"
 
     char* dup4val(char* yytext) {
         int len = strlen(yytext);
@@ -34,6 +34,7 @@ STICKLINE                           { printf("flex:%s\n", yytext); yylval.sval =
 "<="                        { printf("le\n"); yylval.sval = dup4val(yytext); return LE; }
 ">="                        { printf("ge\n"); yylval.sval = dup4val(yytext); return GE; }
 ":="                    { printf("assign\n"); yylval.sval = dup4val(yytext); return ASSIGN; }
+":"                     { printf("assignplot\n"); yylval.sval = dup4val(yytext); return ASSIGNPLOT; }
 
 [ \t]                   { ; }
 .	                        { printf("lex:%c\n", *yytext); yylval.sval = dup4val(yytext); return *yytext; }

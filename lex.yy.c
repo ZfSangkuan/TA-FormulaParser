@@ -360,8 +360,8 @@ static void yy_fatal_error (yyconst char msg[]  );
 	*yy_cp = '\0'; \
 	(yy_c_buf_p) = yy_cp;
 
-#define YY_NUM_RULES 15
-#define YY_END_OF_BUFFER 16
+#define YY_NUM_RULES 16
+#define YY_END_OF_BUFFER 17
 /* This struct is not used in this scanner,
    but its presence is necessary. */
 struct yy_trans_info
@@ -371,9 +371,9 @@ struct yy_trans_info
 	};
 static yyconst flex_int16_t yy_accept[71] =
     {   0,
-        0,    0,   16,   14,   13,   15,   14,    1,   14,   14,
-       14,    9,    9,    9,    9,    9,    9,    9,    9,    9,
-       14,    1,    0,   12,   10,   11,    9,    9,    0,    9,
+        0,    0,   17,   15,   14,   16,   15,    1,   13,   15,
+       15,    9,    9,    9,    9,    9,    9,    9,    9,    9,
+       15,    1,    0,   12,   10,   11,    9,    9,    0,    9,
         9,    9,    8,    9,    9,    9,    0,    2,    7,    0,
         9,    9,    9,    9,    9,    9,    9,    9,    9,    9,
         9,    9,    9,    3,    9,    9,    9,    9,    3,    9,
@@ -509,7 +509,7 @@ char *yytext;
     #include <stdio.h>
     #include <stdlib.h>
     #include <string.h>
-    #include "y.tab.h"
+    #include "hithinkFlush_formula.tab.h"
 
     char* dup4val(char* yytext) {
         int len = strlen(yytext);
@@ -847,20 +847,25 @@ YY_RULE_SETUP
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 38 "hithinkFlush_formula.l"
-{ ; }
+#line 37 "hithinkFlush_formula.l"
+{ printf("assignplot\n"); yylval.sval = dup4val(yytext); return ASSIGNPLOT; }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
 #line 39 "hithinkFlush_formula.l"
-{ printf("lex:%c\n", *yytext); yylval.sval = dup4val(yytext); return *yytext; }
+{ ; }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 41 "hithinkFlush_formula.l"
+#line 40 "hithinkFlush_formula.l"
+{ printf("lex:%c\n", *yytext); yylval.sval = dup4val(yytext); return *yytext; }
+	YY_BREAK
+case 16:
+YY_RULE_SETUP
+#line 42 "hithinkFlush_formula.l"
 ECHO;
 	YY_BREAK
-#line 864 "lex.yy.c"
+#line 869 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1857,7 +1862,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 41 "hithinkFlush_formula.l"
+#line 42 "hithinkFlush_formula.l"
 
 
 

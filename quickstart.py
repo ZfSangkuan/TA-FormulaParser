@@ -60,6 +60,9 @@ class TestStrategy(bt.Strategy):
             to_plot = bt.If(cond, up-lw, 0)
             bt.LinePlotterIndicator(to_plot, name="")
 
+        def PLOT(line, name_str):
+            bt.LinePlotterIndicator(line*1, name=name_str)
+
         ABS = abs
 
 
@@ -70,15 +73,21 @@ class TestStrategy(bt.Strategy):
         # callback()
 
         DIF=(EMA(C,12)-EMA(C,26))
+        PLOT(DIF,"DIF")
         DEA=EMA(DIF,9)
+        PLOT(DEA,"DEA")
         MACD=2*(DIF-DEA)
+        PLOT(MACD,"MACD")
         STICKLINE(bt.And(MACD>REF(MACD,1),MACD>=0),MACD,0,2,0)
         STICKLINE(bt.And(MACD>REF(MACD,1),MACD<0),MACD,0,2,1)
         FH1=bt.And(bt.And(REF(MACD,1)<REF(MACD,2),REF(MACD,2)<REF(MACD,3)),REF(MACD,3)<REF(MACD,4))
         FH2=bt.And(MACD>=0,COUNT(MACD>REF(MACD,1),1)==1)
         FH3=bt.And(bt.And(FH1,FH2),EMA(C,13)>REF(EMA(C,13),1))
         FH4=bt.And(bt.And(FH1,FH2),ABS((DIF-DEA)/C)<0.018)
-        FH5汉=bt.And(bt.And(FH1,FH2),MACD<0.10)
+        FH5=bt.And(bt.And(FH1,FH2),MACD<0.10)
+        STICKLINE(bt.Or(bt.Or(FH3,FH4),FH5),0,MACD,2,0)
+        STICKLINE(bt.And(MACD<=REF(MACD,1),MACD<0),0,MACD,2,0)
+        STICKLINE(bt.And(MACD<REF(MACD,1),MACD>0),0,MACD,2,1)
 
         # bt.LinePlotterIndicator(FH1, name='fh1')
 

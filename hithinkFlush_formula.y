@@ -12,7 +12,7 @@
 
     char py_repr[1024];
 
-    char* strmrg(char*[] s, int[] free_bits) {
+    char* strmrg(char** s, int* free_bits) {
         char* ss = (char*) malloc(1 * sizeof(char));
         return ss;
     }
@@ -82,6 +82,22 @@
         return ss;
     }
 
+    char* strmrg8(char* s0, char* s1, char* s2, char* s3, char* s4, char* s5, char* s6, char* s7) {
+        int len = strlen(s0) + strlen(s1) + strlen(s2) + strlen(s3) + strlen(s4) + strlen(s5) + strlen(s6) + strlen(s7);
+        char* ss = (char*) malloc(++len * sizeof(char));
+        strcpy(ss, s0);
+        strcat(ss, s1);
+        strcat(ss, s2);
+        strcat(ss, s3);
+        strcat(ss, s4);
+        strcat(ss, s5);
+        strcat(ss, s6);
+        strcat(ss, s7);
+        free(s0); free(s2);
+
+        return ss;
+    }
+
 %}
 
 
@@ -100,7 +116,7 @@
 
 %printer { fprintf (yyo, "\"%s\"", $$); } <sval>;
 
-%nonassoc ASSIGN
+%nonassoc ASSIGN ASSIGNPLOT
 %left AND OR
 %nonassoc '>' '<' '=' LE GE
 %left '-' '+'
@@ -135,6 +151,9 @@ line_body   : statement         { $$ = strmrg1($1); }
 
 statement   : ID ASSIGN expr    {
                                     $$ = strmrg3($1, "=", $3, 3);
+                                }
+            | ID ASSIGNPLOT expr {
+                                    $$ = strmrg8($1, "=", $3, "\nPLOT(", $1, ",\"", $1, "\")");
                                 }
             ;
 
