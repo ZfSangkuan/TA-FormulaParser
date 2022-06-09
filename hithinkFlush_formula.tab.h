@@ -64,7 +64,8 @@ extern int yydebug;
     AND = 265,                     /* AND  */
     OR = 266,                      /* OR  */
     LE = 267,                      /* LE  */
-    GE = 268                       /* GE  */
+    GE = 268,                      /* GE  */
+    NEG = 269                      /* NEG  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif
@@ -73,13 +74,13 @@ extern int yydebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 106 "hithinkFlush_formula.y"
+#line 117 "hithinkFlush_formula.y"
 
     int ival;
     double dval;
     char* sval;
 
-#line 83 "hithinkFlush_formula.tab.h"
+#line 84 "hithinkFlush_formula.tab.h"
 
 };
 typedef union YYSTYPE YYSTYPE;

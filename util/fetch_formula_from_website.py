@@ -1,6 +1,13 @@
 import requests
 
 r = requests.get("https://www.gupang.com/202202/60261.html")
+# r = requests.get("https://www.gupang.com/202202/60404.html")
+# r = requests.get("https://www.gupang.com/202202/60261.html")
+# r = requests.get("https://www.gupang.com/202201/59999.html")
+
+# r = requests.get("https://www.gupang.com/202202/60480.html")
+# r = requests.get("https://www.gupang.com/202203/60771.html")
+
 
 raw_formula_str = r.text
 

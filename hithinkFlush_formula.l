@@ -14,12 +14,12 @@
 
 alpha [a-zA-Z]
 digit [0-9]
-han [\xE4-\xE9][\xB8-\xBF][\x80-\xBF]
+han [\xE4-\xE9][\x80-\xBF][\x80-\xBF]
 
 %%
 
-[-]?{digit}+                { printf("flex:%s\n", yytext); yylval.sval = dup4val(yytext); return NUMBER; }
-[-]?{digit}+\.{digit}+      { printf("flex:%s\n", yytext); yylval.sval = dup4val(yytext); return FLOAT_NUM; }
+{digit}+                { printf("flex:%s\n", yytext); yylval.sval = dup4val(yytext); return NUMBER; }
+{digit}+\.{digit}+      { printf("flex:%s\n", yytext); yylval.sval = dup4val(yytext); return FLOAT_NUM; }
 
 (color|COLOR)({alpha}|{digit})*     { printf("flex:%s\n", yytext); yylval.sval = dup4val(yytext); return COLOR; }
 nodraw|NODRAW                       { printf("flex:%s\n", yytext); yylval.sval = dup4val(yytext); return COLOR; }

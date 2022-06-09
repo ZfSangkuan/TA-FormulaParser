@@ -25,13 +25,24 @@
         return ss;
     }
 
-    char* strmrg2(char* s1, char* s2) {
-        int len = strlen(s1) + strlen(s2);
+    char* strmrg2(char* s0, char* s1, int free_bit) {
+        int len = strlen(s0) + strlen(s1);
         char* ss = (char*) malloc(++len * sizeof(char));
-        strcpy(ss, s1);
-        strcat(ss, s2);
+        strcpy(ss, s0);
+        strcat(ss, s1);
 
-        free(s1); 
+        switch(free_bit) {
+            case 0:
+                free(s0);
+                break;
+            case 1:
+                free(s1);
+                break;
+            case 2:
+                free(s0);
+                free(s1);
+                break;
+        }
 
         return ss;
     }
@@ -109,7 +120,7 @@
     char* sval;
 }
 
-%type <sval> lines line line_body expr statement plotment func params
+%type <sval> lines line line_body expr statement plotment func params string
 
 %token <sval> COLOR STICKLINE ID
 %token <sval> NUMBER FLOAT_NUM 
@@ -121,20 +132,21 @@
 %nonassoc '>' '<' '=' LE GE
 %left '-' '+'
 %left '*' '/'
+%precedence NEG
 
 
 %%
 
 lines       : /* empty */       { $$ = strmrg1(""); }
             | lines line        {
-                                    $$ = strmrg2($1, $2);
+                                    $$ = strmrg2($1, $2, 2);
                                     strcpy(py_repr, $$);
                                     printf("\nPY_REPR:\n%s\n\n", py_repr);
                                 }
             ;
 
 line        : line_body line_tail ';'   {
-                                            $$ = strmrg2($1, "\n");  
+                                            $$ = strmrg2($1, "\n", 0);  
                                         }
             ;
 
@@ -162,6 +174,7 @@ statement   : ID ASSIGN expr    {
 plotment    : STICKLINE '(' params ')' {
                                     $$ = strmrg3("STICKLINE(", $3, ")", 0);
                                 }
+            | func              { $$ = strmrg1($1); }
             ;
 
 expr        : '(' expr ')'      {
@@ -172,6 +185,9 @@ expr        : '(' expr ')'      {
                                 }
             | expr '-' expr     {
                                     $$ = strmrg3($1, "-", $3, 1);
+                                }
+            | '-' expr %prec NEG{
+                                    $$ = strmrg2("-", $2, 1);
                                 }
             | expr '*' expr     {
                                     $$ = strmrg3($1, "*", $3, 1);
@@ -202,6 +218,9 @@ expr        : '(' expr ')'      {
                                 }
             | func              {   $$ = strmrg1($1); }
             | ID                {   $$ = strmrg1($1); }
+            | ID '[' NUMBER ']' {   
+                                    $$ = strmrg5("REF(", $1, ",", $3, ")"); 
+                                }
             | NUMBER            {   $$ = strmrg1($1); }
             | FLOAT_NUM         {   $$ = strmrg1($1); }
             ;
@@ -211,8 +230,11 @@ func        : ID '(' params ')' {
                                 }
             ;
 
+string      : '\'' ID '\''      {   $$ = strmrg3("\"", $2, "\"", 0); }
+
 params      : expr              { $$ = strmrg1($1); }
             | params ',' expr   { $$ = strmrg3($1, ",", $3, 1); }
+            | params ',' string { $$ = strmrg3($1, ",", $3, 1); }
             ;
 
 %%
